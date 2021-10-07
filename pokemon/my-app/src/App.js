@@ -34,33 +34,31 @@ function App(props) {
   const [list, setList] = useState(data);
   const [activePok, setActivePok] = useState();
 
-  // const handleNext = async () => {
-  //   const next = activePok.id + 1;
-  //   console.log(next)
-  //    const nextPoke = await list.find(item => item.id === next);
-  //   console.log(nextPoke)
-  //   setActivePok(nextPoke)
-  //   console.log(activePok)
-  // }
-  useEffect(() => {
+  const handleNext = async () => {
     if (activePok) {
       const next = activePok.id + 1;
-      console.log(next)
-       const nextPoke = list.find(item => item.id === next);
-      console.log(nextPoke)
+      // console.log('------', next)
+       const nextPoke = await list.find(item => item.id === next);
+      console.log('nextPoke', nextPoke)
       setActivePok(nextPoke)
       console.log(activePok)
 
     }
-  }, [activePok])
+  }
+  // useEffect(() => {
+
+
+
+  // }, [activePok])
 
 
   return (
     <>
     <Select  list={list} setActivePok={setActivePok}/>
     <Card activePok={activePok}/>
-    <button >Next</button>
     <button>Previous</button>
+    <button >Next</button>
+
     </>
   );
 }
